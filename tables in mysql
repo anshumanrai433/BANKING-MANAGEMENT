@@ -1,0 +1,119 @@
+CREATE DATABASE IF NOT EXISTS banking_system;
+USE banking_system;
+
+
+CREATE TABLE IF NOT EXISTS accounts (
+    account_id INT AUTO_INCREMENT PRIMARY KEY,
+    account_number VARCHAR(20) UNIQUE NOT NULL,
+    account_holder VARCHAR(100) NOT NULL,
+    pin VARCHAR(6) NOT NULL,
+    balance DECIMAL(10, 2) DEFAULT 0.00,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+
+CREATE TABLE IF NOT EXISTS transactions (
+    transaction_id INT AUTO_INCREMENT PRIMARY KEY,
+    account_number VARCHAR(20),
+    transaction_type VARCHAR(50),
+    amount DECIMAL(10, 2),
+    timestamp TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (account_number) REFERENCES accounts(account_number)
+);
+
+
+DELIMITER //
+CREATE PROCEDURE check_balance(IN acc_number VARCHAR(20))
+BEGIN
+    SELECT balance 
+    FROM accounts 
+    WHERE account_number = acc_number;
+END //
+DELIMITER ;
+
+
+DELIMITER //
+CREATE PROCEDURE deposit_amount(IN acc_number VARCHAR(20), IN amount DECIMAL(10, 2))
+BEGIN
+    UPDATE accounts 
+    SET balance = balance + amount 
+    WHERE account_number = acc_number;
+
+    INSERT INTO transactions (account_number, transaction_type, amount) 
+    VALUES (acc_number, 'Deposit', amount);
+END //
+DELIMITER ;
+
+
+
+
+DELIMITER //
+CREATE PROCEDURE withdraw_amount(IN acc_number VARCHAR(20), IN amount DECIMAL(10, 2))
+BEGIN
+    DECLARE current_balance DECIMAL(10, 2);
+
+    SELECT balance INTO current_balance 
+    FROM accounts 
+    WHERE account_number = acc_number;
+
+    IF current_balance >= amount THEN
+        UPDATE accounts 
+        SET balance = balance - amount 
+        WHERE account_number = acc_number;
+
+        INSERT INTO transactions (account_number, transaction_type, amount) 
+        VALUES (acc_number, 'Withdrawal', amount);
+    ELSE
+        SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'Insufficient balance';
+    END IF;
+END //
+DELIMITER ;
+
+
+
+
+
+DELIMITER //
+CREATE PROCEDURE fast_cash(IN acc_number VARCHAR(20), IN amount DECIMAL(10, 2))
+BEGIN
+    CALL withdraw_amount(acc_number, amount);
+END //
+DELIMITER ;
+
+
+
+DELIMITER //
+CREATE PROCEDURE mini_statement(IN acc_number VARCHAR(20))
+BEGIN
+    SELECT transaction_id, transaction_type, amount, timestamp 
+    FROM transactions 
+    WHERE account_number = acc_number 
+    ORDER BY timestamp DESC 
+    LIMIT 5;
+END //
+DELIMITER ;
+
+
+
+DELIMITER //
+CREATE PROCEDURE change_pin(IN acc_number VARCHAR(20), IN old_pin VARCHAR(6), IN new_pin VARCHAR(6))
+BEGIN
+    DECLARE current_pin VARCHAR(6);
+    
+    SELECT pin INTO current_pin 
+    FROM accounts 
+    WHERE account_number = acc_number;
+    
+    IF current_pin = old_pin THEN
+        UPDATE accounts 
+        SET pin = new_pin 
+        WHERE account_number = acc_number;
+    ELSE
+        SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'Incorrect old PIN';
+    END IF;
+END //
+DELIMITER ;
+
+
+
+
