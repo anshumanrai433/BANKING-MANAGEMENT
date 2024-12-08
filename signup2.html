@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bank Account Signup - Additional Details</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(to right, #ffeb3b, #fbc02d);
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            max-width: 900px;
+            margin: 50px auto;
+            padding: 30px;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 12px 20px rgba(0, 0, 0, 0.1);
+        }
+        h1, h2 {
+            text-align: center;
+            color: #333;
+            font-family: 'Verdana', sans-serif;
+        }
+        h2 {
+            color: #2196f3;
+            margin-top: 0;
+        }
+        .form-section {
+            margin-bottom: 20px;
+        }
+        label {
+            font-size: 1.1em;
+            font-weight: bold;
+            margin-bottom: 5px;
+            color: #444;
+        }
+        input, select, .radio-group label {
+            font-size: 1em;
+            padding: 12px;
+            margin: 10px 0;
+            width: 100%;
+            box-sizing: border-box;
+            border-radius: 8px;
+            border: 2px solid #e0e0e0;
+            transition: border-color 0.3s ease;
+        }
+        input:focus, select:focus {
+            border-color: #4caf50;
+        }
+        .radio-group {
+            display: flex;
+            gap: 15px;
+            align-items: center;
+        }
+        .radio-group input {
+            margin-right: 8px;
+        }
+        button {
+            padding: 12px;
+            background-color: #4caf50;
+            color: white;
+            font-size: 1.1em;
+            font-weight: bold;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            width: 100%;
+            transition: background 0.3s ease;
+        }
+        button:hover {
+            background: #45a049;
+        }
+        .form-label {
+            font-size: 18px;
+            font-weight: bold;
+        }
+        .form-input {
+            font-size: 16px;
+            padding: 10px;
+            margin: 5px 0;
+        }
+        .form-container {
+            margin-top: 20px;
+        }
+        .page-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .page-header img {
+            width: 90px;
+            height: 90px;
+        }
+        .form-input::placeholder {
+            font-style: italic;
+            color: #888;
+        }
+        .footer {
+            text-align: center;
+            margin-top: 40px;
+            font-size: 0.9em;
+            color: #555;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <div class="page-header">
+            <img src="bank.png" alt="Bank Logo">
+            <div>
+                <h1>Application Form - Page 2</h1>
+                <h2>Additional Details</h2>
+            </div>
+        </div>
+
+        <form action="submit_form.html" method="POST">
+            <!-- Religion -->
+            <div class="form-section">
+                <label class="form-label" for="religion">Religion:</label>
+                <select class="form-input" id="religion" name="religion" required>
+                    <option value="Hindu">Hindu</option>
+                    <option value="Muslim">Muslim</option>
+                    <option value="Sikh">Sikh</option>
+                    <option value="Christian">Christian</option>
+                    <option value="Other">Other</option>
+                </select>
+            </div>
+
+            <!-- Category -->
+            <div class="form-section">
+                <label class="form-label" for="category">Category:</label>
+                <select class="form-input" id="category" name="category" required>
+                    <option value="General">General</option>
+                    <option value="OBC">OBC</option>
+                    <option value="SC">SC</option>
+                    <option value="ST">ST</option>
+                    <option value="Other">Other</option>
+                </select>
+            </div>
+
+            <!-- Income -->
+            <div class="form-section">
+                <label class="form-label" for="income">Income:</label>
+                <select class="form-input" id="income" name="income" required>
+                    <option value="Null">Null</option>
+                    <option value="<1,50,000">< 1,50,000</option>
+                    <option value="<2,50,000">< 2,50,000</option>
+                    <option value="5,00,000">5,00,000</option>
+                    <option value="Up to 10,00,000">Up to 10,00,000</option>
+                    <option value="Above 10,00,000">Above 10,00,000</option>
+                </select>
+            </div>
+
+            <!-- Educational Qualification -->
+            <div class="form-section">
+                <label class="form-label" for="education">Educational Qualification:</label>
+                <select class="form-input" id="education" name="education" required>
+                    <option value="Non-Graduate">Non-Graduate</option>
+                    <option value="Graduate">Graduate</option>
+                    <option value="Post-Graduate">Post-Graduate</option>
+                    <option value="Doctorate">Doctorate</option>
+                    <option value="Others">Others</option>
+                </select>
+            </div>
+
+            <!-- Occupation -->
+            <div class="form-section">
+                <label class="form-label" for="occupation">Occupation:</label>
+                <select class="form-input" id="occupation" name="occupation" required>
+                    <option value="Salaried">Salaried</option>
+                    <option value="Self-Employed">Self-Employed</option>
+                    <option value="Business">Business</option>
+                    <option value="Student">Student</option>
+                    <option value="Retired">Retired</option>
+                    <option value="Other">Other</option>
+                </select>
+            </div>
+
+            <!-- PAN Number -->
+            <div class="form-section">
+                <label class="form-label" for="pan">PAN Number:</label>
+                <input class="form-input" type="text" id="pan" name="pan" placeholder="Enter PAN Number" required>
+            </div>
+
+            <!-- Aadhar Number -->
+            <div class="form-section">
+                <label class="form-label" for="aadhar">Aadhar Number:</label>
+                <input class="form-input" type="text" id="aadhar" name="aadhar" placeholder="Enter Aadhar Number" required>
+            </div>
+
+            <!-- Senior Citizen -->
+            <div class="form-section">
+                <label class="form-label">Senior Citizen:</label>
+                <div class="radio-group">
+                    <label><input type="radio" name="senior_citizen" value="Yes"> Yes</label>
+                    <label><input type="radio" name="senior_citizen" value="No"> No</label>
+                </div>
+            </div>
+
+            <!-- Existing Account -->
+            <div class="form-section">
+                <label class="form-label">Existing Account:</label>
+                <div class="radio-group">
+                    <label><input type="radio" name="existing_account" value="Yes"> Yes</label>
+                    <label><input type="radio" name="existing_account" value="No"> No</label>
+                </div>
+            </div>
+
+            <!-- Form Number -->
+            <div class="form-section">
+                <label class="form-label" for="formno">Form No:</label>
+                <input class="form-input" type="text" id="formno" name="formno" value="12345" readonly>
+            </div>
+
+            <!-- Submit Button -->
+            <button type="submit">Next</button>
+        </form>
+    </div>
+
+    <div class="footer">
+        <p>&copy; 2024 Bank Application. All Rights Reserved.</p>
+    </div>
+</body>
+</html>
