@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Deposit - Bank Management System</title>
+    <style>
+        /* General Reset */
+        body {
+            font-family: 'Roboto', Arial, sans-serif;
+            background-color: #eef2f3;
+            margin: 0;
+            padding: 0;
+            color: #333;
+        }
+
+        /* Container Styling */
+        .container {
+            width: 40%;
+            margin: 50px auto;
+            padding: 30px;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Heading Styling */
+        h1 {
+            text-align: center;
+            color: #4CAF50;
+            font-size: 2em;
+            margin-bottom: 20px;
+        }
+
+        /* Form Styling */
+        form {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        label {
+            font-weight: bold;
+            font-size: 1.1em;
+            margin-bottom: 5px;
+        }
+
+        input, select {
+            padding: 12px;
+            font-size: 1em;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            transition: border-color 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        input:focus, select:focus {
+            border-color: #4CAF50;
+            box-shadow: 0 0 8px rgba(76, 175, 80, 0.3);
+        }
+
+        .error {
+            color: #e74c3c;
+            font-size: 0.9em;
+        }
+
+        /* Button Styling */
+        button {
+            padding: 12px;
+            font-size: 1.1em;
+            color: white;
+            background-color: #4CAF50;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #45a049;
+            transform: translateY(-2px);
+        }
+
+        button:active {
+            transform: translateY(0);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .container {
+                width: 90%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Deposit Funds</h1>
+        <form id="depositForm">
+            <!-- Account Number -->
+            <label for="accountNumber">Account Number:</label>
+            <input type="text" id="accountNumber" name="accountNumber" placeholder="Enter your account number" required>
+            <span id="accountError" class="error"></span>
+
+            <!-- Deposit Amount -->
+            <label for="amount">Deposit Amount:</label>
+            <input type="number" id="amount" name="amount" placeholder="Enter amount to deposit" required>
+            <span id="amountError" class="error"></span>
+
+            <!-- Deposit Method -->
+            <label for="depositMethod">Deposit Method:</label>
+            <select id="depositMethod" name="depositMethod" required>
+                <option value="">Select Deposit Method</option>
+                <option value="cash">Cash</option>
+                <option value="check">Check</option>
+                <option value="onlineTransfer">Online Transfer</option>
+            </select>
+            <span id="methodError" class="error"></span>
+
+            <!-- Notes -->
+            <label for="notes">Notes (Optional):</label>
+            <input type="text" id="notes" name="notes" placeholder="Add any additional notes">
+
+            <!-- Submit Button -->
+            <button type="submit">Deposit Now</button>
+        </form>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const form = document.getElementById('depositForm');
+            const accountNumberInput = document.getElementById('accountNumber');
+            const amountInput = document.getElementById('amount');
+            const depositMethodInput = document.getElementById('depositMethod');
+
+            const accountError = document.getElementById('accountError');
+            const amountError = document.getElementById('amountError');
+            const methodError = document.getElementById('methodError');
+
+            form.addEventListener('submit', function (event) {
+                let isValid = true;
+
+                // Validate Account Number
+                if (accountNumberInput.value.trim() === '') {
+                    accountError.textContent = 'Account number is required.';
+                    isValid = false;
+                } else {
+                    accountError.textContent = '';
+                }
+
+                // Validate Amount
+                if (amountInput.value.trim() === '' || parseFloat(amountInput.value) <= 0) {
+                    amountError.textContent = 'Please enter a valid deposit amount.';
+                    isValid = false;
+                } else {
+                    amountError.textContent = '';
+                }
+
+                // Validate Deposit Method
+                if (depositMethodInput.value === '') {
+                    methodError.textContent = 'Please select a deposit method.';
+                    isValid = false;
+                } else {
+                    methodError.textContent = '';
+                }
+
+                if (!isValid) {
+                    event.preventDefault(); // Prevent form submission if validation fails
+                }
+            });
+        });
+    </script>
+</body>
+</html>
