@@ -3,170 +3,121 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Deposit - Bank Management System</title>
+    <title>Deposit</title>
     <style>
-        /* General Reset */
         body {
-            font-family: 'Roboto', Arial, sans-serif;
-            background-color: #eef2f3;
             margin: 0;
             padding: 0;
-            color: #333;
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(to bottom, rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)), url('icon/atm2.png') no-repeat center center fixed;
+            background-size: cover;
+            color: white;
         }
 
-        /* Container Styling */
         .container {
-            width: 40%;
-            margin: 50px auto;
-            padding: 30px;
-            background: white;
-            border-radius: 10px;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
-        }
-
-        /* Heading Styling */
-        h1 {
-            text-align: center;
-            color: #4CAF50;
-            font-size: 2em;
-            margin-bottom: 20px;
-        }
-
-        /* Form Styling */
-        form {
             display: flex;
             flex-direction: column;
-            gap: 15px;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
         }
 
-        label {
-            font-weight: bold;
-            font-size: 1.1em;
-            margin-bottom: 5px;
+        .form-container {
+            background: rgba(0, 0, 0, 0.7);
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.5);
+            text-align: center;
+            width: 400px;
+            animation: fadeIn 1s ease-in-out;
         }
 
-        input, select {
+        @keyframes fadeIn {
+            from { opacity: 0; transform: scale(0.95); }
+            to { opacity: 1; transform: scale(1); }
+        }
+
+        .form-container h1 {
+            font-size: 24px;
+            margin-bottom: 25px;
+            color: #00e676;
+            text-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+        }
+
+        .form-container input[type="text"] {
+            width: 100%;
             padding: 12px;
-            font-size: 1em;
-            border: 1px solid #ddd;
-            border-radius: 5px;
-            transition: border-color 0.3s ease, box-shadow 0.3s ease;
-        }
-
-        input:focus, select:focus {
-            border-color: #4CAF50;
-            box-shadow: 0 0 8px rgba(76, 175, 80, 0.3);
-        }
-
-        .error {
-            color: #e74c3c;
-            font-size: 0.9em;
-        }
-
-        /* Button Styling */
-        button {
-            padding: 12px;
-            font-size: 1.1em;
-            color: white;
-            background-color: #4CAF50;
+            margin: 15px 0;
             border: none;
-            border-radius: 5px;
+            border-radius: 8px;
+            font-size: 18px;
+            background-color: #34495e;
+            color: white;
+            outline: none;
+            transition: all 0.3s ease-in-out;
+        }
+
+        .form-container input[type="text"]:focus {
+            background-color: #2c3e50;
+            border: 2px solid #00e676;
+        }
+
+        .form-container button {
+            width: 100%;
+            padding: 12px;
+            margin: 10px 0;
+            border: none;
+            border-radius: 8px;
+            background: linear-gradient(to right, #00e676, #00c853);
+            color: white;
+            font-size: 18px;
+            font-weight: bold;
             cursor: pointer;
-            transition: background-color 0.3s ease, transform 0.3s ease;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+            transition: all 0.3s ease-in-out;
         }
 
-        button:hover {
-            background-color: #45a049;
-            transform: translateY(-2px);
+        .form-container button:hover {
+            transform: scale(1.05);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.5);
         }
 
-        button:active {
-            transform: translateY(0);
+        .form-container .back-button {
+            background: linear-gradient(to right, #ff5f6d, #ff1e56);
         }
 
-        /* Responsive Design */
-        @media (max-width: 768px) {
-            .container {
-                width: 90%;
-            }
+        .form-container .back-button:hover {
+            transform: scale(1.05);
+            box-shadow: 0 6px 12px rgba(255, 30, 86, 0.5);
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <h1>Deposit Funds</h1>
-        <form id="depositForm">
-            <!-- Account Number -->
-            <label for="accountNumber">Account Number:</label>
-            <input type="text" id="accountNumber" name="accountNumber" placeholder="Enter your account number" required>
-            <span id="accountError" class="error"></span>
-
-            <!-- Deposit Amount -->
-            <label for="amount">Deposit Amount:</label>
-            <input type="number" id="amount" name="amount" placeholder="Enter amount to deposit" required>
-            <span id="amountError" class="error"></span>
-
-            <!-- Deposit Method -->
-            <label for="depositMethod">Deposit Method:</label>
-            <select id="depositMethod" name="depositMethod" required>
-                <option value="">Select Deposit Method</option>
-                <option value="cash">Cash</option>
-                <option value="check">Check</option>
-                <option value="onlineTransfer">Online Transfer</option>
-            </select>
-            <span id="methodError" class="error"></span>
-
-            <!-- Notes -->
-            <label for="notes">Notes (Optional):</label>
-            <input type="text" id="notes" name="notes" placeholder="Add any additional notes">
-
-            <!-- Submit Button -->
-            <button type="submit">Deposit Now</button>
-        </form>
+        <div class="form-container">
+            <h1>Enter Amount You Want to Deposit</h1>
+            <form id="depositForm">
+                <input type="text" id="amount" placeholder="Enter Amount">
+                <button type="button" id="depositButton">Deposit</button>
+                <button type="button" class="back-button" id="backButton">Back</button>
+            </form>
+        </div>
     </div>
 
     <script>
-        document.addEventListener('DOMContentLoaded', function () {
-            const form = document.getElementById('depositForm');
-            const accountNumberInput = document.getElementById('accountNumber');
-            const amountInput = document.getElementById('amount');
-            const depositMethodInput = document.getElementById('depositMethod');
+        document.getElementById('depositButton').addEventListener('click', () => {
+            const amount = document.getElementById('amount').value;
+            if (amount === '') {
+                alert('Please enter the amount you want to deposit');
+            } else {
+                // Replace with your backend API call
+                alert(`Rs. ${amount} deposited successfully!`);
+                window.location.href = 'main_class.html'; // Redirect to main class
+            }
+        });
 
-            const accountError = document.getElementById('accountError');
-            const amountError = document.getElementById('amountError');
-            const methodError = document.getElementById('methodError');
-
-            form.addEventListener('submit', function (event) {
-                let isValid = true;
-
-                // Validate Account Number
-                if (accountNumberInput.value.trim() === '') {
-                    accountError.textContent = 'Account number is required.';
-                    isValid = false;
-                } else {
-                    accountError.textContent = '';
-                }
-
-                // Validate Amount
-                if (amountInput.value.trim() === '' || parseFloat(amountInput.value) <= 0) {
-                    amountError.textContent = 'Please enter a valid deposit amount.';
-                    isValid = false;
-                } else {
-                    amountError.textContent = '';
-                }
-
-                // Validate Deposit Method
-                if (depositMethodInput.value === '') {
-                    methodError.textContent = 'Please select a deposit method.';
-                    isValid = false;
-                } else {
-                    methodError.textContent = '';
-                }
-
-                if (!isValid) {
-                    event.preventDefault(); // Prevent form submission if validation fails
-                }
-            });
+        document.getElementById('backButton').addEventListener('click', () => {
+            window.location.href = 'main_class.html'; // Redirect to main class
         });
     </script>
 </body>
