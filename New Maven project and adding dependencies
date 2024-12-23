@@ -1,26 +1,10 @@
-//pom.xml
+First we create new maven Project.
+Configure the Maven Project (GroupId: Enter a group ID for your project (e.g., com.bankmanagement),ArtifactId: Enter an artifact ID for your project (e.g., banking-management-system),Version: You can leave the default version or specify one, like 1.0-SNAPSHOT).
 
+Specify the Project Location.
+Now Maven file created with a pom.xml file at the root of the project. Open this file to add dependencies and configure plugins.
 
-<?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0"
-         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-    <modelVersion>4.0.0</modelVersion>
-
-    <groupId>org.test</groupId>
-    <artifactId>BANKING-MANAGEMENT</artifactId>
-    <version>1.0-SNAPSHOT</version>
-
-    <properties>
-        <maven.compiler.source>22</maven.compiler.source>
-        <maven.compiler.target>22</maven.compiler.target>
-        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-    </properties>
-
-</project>
-
-
-// adding dependencies to pom.xml
+Add Dependencies to pom.xml,
 <project xmlns="http://maven.apache.org/POM/4.0.0"
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
@@ -54,6 +38,8 @@
         <!-- Add more dependencies as needed -->
     </dependencies>
 </project>
-        
 
 
+Then reload Maven project,
+Setup the project structure,
+Then we test the project setup.
