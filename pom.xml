@@ -1,55 +1,48 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <!-- The modelVersion defines the version of the POM (Project Object Model). This is always 4.0.0 -->
     <modelVersion>4.0.0</modelVersion>
-    <groupId>org.test</groupId>
-    <artifactId>banking-system</artifactId>
+
+    <!-- Group ID is the unique identifier for your project, typically using your domain in reverse -->
+    <groupId>com.bankingsystem</groupId>
+
+    <!-- Artifact ID is the name of the project (the final name of the artifact in the build output) -->
+    <artifactId>BankingSystemSimulation</artifactId>
+
+    <!-- Version defines the version of your artifact. '1.0-SNAPSHOT' indicates an ongoing development version -->
     <version>1.0-SNAPSHOT</version>
 
     <dependencies>
-        <!-- SLF4J API -->
+        <!-- Servlet API: This dependency provides the API for developing Servlets. 
+             It's marked as 'provided' because it will be provided by the servlet container (e.g., Tomcat) -->
         <dependency>
-            <groupId>org.slf4j</groupId>
-            <artifactId>slf4j-api</artifactId>
-            <version>1.7.36</version>
+            <groupId>javax.servlet</groupId>
+            <artifactId>javax.servlet-api</artifactId>
+            <version>4.0.1</version>
+            <scope>provided</scope> <!-- The scope 'provided' indicates this dependency will be available at runtime, but Maven doesn't need to include it in the WAR/JAR -->
         </dependency>
 
-        <!-- SLF4J Simple (or choose another logging backend) -->
+        <!-- JSTL (JavaServer Pages Standard Tag Library): A library that helps with web page creation by simplifying tasks like iteration, conditional processing, etc. -->
         <dependency>
-            <groupId>org.slf4j</groupId>
-            <artifactId>slf4j-simple</artifactId>
-            <version>1.7.36</version>
+            <groupId>javax.servlet.jsp.jstl</groupId>
+            <artifactId>jstl</artifactId>
+            <version>3.1.0</version>
         </dependency>
 
-        <!-- MySQL JDBC Driver (or use the relevant driver for your database) -->
+        <!-- MySQL Connector: The connector that allows Java applications to communicate with a MySQL database -->
         <dependency>
             <groupId>mysql</groupId>
             <artifactId>mysql-connector-java</artifactId>
-            <version>8.0.32</version>
+            <version>8.0.33</version> <!-- Ensure you are using the appropriate version for your MySQL database -->
+        </dependency>
+
+        <!-- JUnit for testing purposes: A framework for writing and running tests. This version is for unit testing -->
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>4.13.2</version> <!-- JUnit 4.13.2 version for unit testing -->
+            <scope>test</scope> <!-- The 'test' scope means this dependency is used only during the test phase of the build process -->
         </dependency>
     </dependencies>
-
-    <dependencies>
-    <dependency>
-        <groupId>org.springframework.boot</groupId>
-        <artifactId>spring-boot-starter-web</artifactId>
-    </dependency>
-    <dependency>
-        <groupId>org.springframework.boot</groupId>
-        <artifactId>spring-boot-starter-thymeleaf</artifactId>
-    </dependency>
-    <dependency>
-        <groupId>org.springframework.boot</groupId>
-        <artifactId>spring-boot-starter-data-jpa</artifactId>
-    </dependency>
-    <dependency>
-        <groupId>com.h2database</groupId>
-        <artifactId>h2</artifactId>
-        <scope>runtime</scope>
-    </dependency>
-    <dependency>
-        <groupId>org.springframework.boot</groupId>
-        <artifactId>spring-boot-starter-security</artifactId>
-    </dependency>
-</dependencies>
-
 </project>
